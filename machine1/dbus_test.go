@@ -26,8 +26,8 @@ import (
 	"testing"
 	"time"
 
-	sd_dbus "github.com/coreos/go-systemd/v22/dbus"
 	"github.com/godbus/dbus/v5"
+	sd_dbus "github.com/huntresslabs/go-systemd/dbus"
 )
 
 const (

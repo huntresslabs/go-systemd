@@ -22,7 +22,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/coreos/go-systemd/v22/activation"
+	"github.com/huntresslabs/go-systemd/activation"
 )
 
 func fixListenPid() {

@@ -21,7 +21,7 @@ import (
 	"io"
 	"net/http"
 
-	"github.com/coreos/go-systemd/v22/activation"
+	"github.com/huntresslabs/go-systemd/activation"
 )
 
 func HelloServer(w http.ResponseWriter, req *http.Request) {

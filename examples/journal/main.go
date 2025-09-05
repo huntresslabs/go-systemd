@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/coreos/go-systemd/v22/journal"
+	"github.com/huntresslabs/go-systemd/journal"
 )
 
 func main() {
