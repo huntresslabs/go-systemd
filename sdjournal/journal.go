@@ -28,296 +28,7 @@ package sdjournal
 // #include <systemd/sd-id128.h>
 // #include <stdlib.h>
 // #include <syslog.h>
-//
-// int
-// my_sd_journal_open(void *f, sd_journal **ret, int flags)
-// {
-//   int (*sd_journal_open)(sd_journal **, int);
-//
-//   sd_journal_open = f;
-//   return sd_journal_open(ret, flags);
-// }
-//
-// int
-// my_sd_journal_open_directory(void *f, sd_journal **ret, const char *path, int flags)
-// {
-//   int (*sd_journal_open_directory)(sd_journal **, const char *, int);
-//
-//   sd_journal_open_directory = f;
-//   return sd_journal_open_directory(ret, path, flags);
-// }
-//
-// int
-// my_sd_journal_open_files(void *f, sd_journal **ret, const char **paths, int flags)
-// {
-//   int (*sd_journal_open_files)(sd_journal **, const char **, int);
-//
-//   sd_journal_open_files = f;
-//   return sd_journal_open_files(ret, paths, flags);
-// }
-//
-// void
-// my_sd_journal_close(void *f, sd_journal *j)
-// {
-//   void (*sd_journal_close)(sd_journal *);
-//
-//   sd_journal_close = f;
-//   sd_journal_close(j);
-// }
-//
-// int
-// my_sd_journal_get_usage(void *f, sd_journal *j, uint64_t *bytes)
-// {
-//   int (*sd_journal_get_usage)(sd_journal *, uint64_t *);
-//
-//   sd_journal_get_usage = f;
-//   return sd_journal_get_usage(j, bytes);
-// }
-//
-// int
-// my_sd_journal_add_match(void *f, sd_journal *j, const void *data, size_t size)
-// {
-//   int (*sd_journal_add_match)(sd_journal *, const void *, size_t);
-//
-//   sd_journal_add_match = f;
-//   return sd_journal_add_match(j, data, size);
-// }
-//
-// int
-// my_sd_journal_add_disjunction(void *f, sd_journal *j)
-// {
-//   int (*sd_journal_add_disjunction)(sd_journal *);
-//
-//   sd_journal_add_disjunction = f;
-//   return sd_journal_add_disjunction(j);
-// }
-//
-// int
-// my_sd_journal_add_conjunction(void *f, sd_journal *j)
-// {
-//   int (*sd_journal_add_conjunction)(sd_journal *);
-//
-//   sd_journal_add_conjunction = f;
-//   return sd_journal_add_conjunction(j);
-// }
-//
-// void
-// my_sd_journal_flush_matches(void *f, sd_journal *j)
-// {
-//   void (*sd_journal_flush_matches)(sd_journal *);
-//
-//   sd_journal_flush_matches = f;
-//   sd_journal_flush_matches(j);
-// }
-//
-// int
-// my_sd_journal_next(void *f, sd_journal *j)
-// {
-//   int (*sd_journal_next)(sd_journal *);
-//
-//   sd_journal_next = f;
-//   return sd_journal_next(j);
-// }
-//
-// int
-// my_sd_journal_next_skip(void *f, sd_journal *j, uint64_t skip)
-// {
-//   int (*sd_journal_next_skip)(sd_journal *, uint64_t);
-//
-//   sd_journal_next_skip = f;
-//   return sd_journal_next_skip(j, skip);
-// }
-//
-// int
-// my_sd_journal_previous(void *f, sd_journal *j)
-// {
-//   int (*sd_journal_previous)(sd_journal *);
-//
-//   sd_journal_previous = f;
-//   return sd_journal_previous(j);
-// }
-//
-// int
-// my_sd_journal_previous_skip(void *f, sd_journal *j, uint64_t skip)
-// {
-//   int (*sd_journal_previous_skip)(sd_journal *, uint64_t);
-//
-//   sd_journal_previous_skip = f;
-//   return sd_journal_previous_skip(j, skip);
-// }
-//
-// int
-// my_sd_journal_get_data(void *f, sd_journal *j, const char *field, const void **data, size_t *length)
-// {
-//   int (*sd_journal_get_data)(sd_journal *, const char *, const void **, size_t *);
-//
-//   sd_journal_get_data = f;
-//   return sd_journal_get_data(j, field, data, length);
-// }
-//
-// int
-// my_sd_journal_set_data_threshold(void *f, sd_journal *j, size_t sz)
-// {
-//   int (*sd_journal_set_data_threshold)(sd_journal *, size_t);
-//
-//   sd_journal_set_data_threshold = f;
-//   return sd_journal_set_data_threshold(j, sz);
-// }
-//
-// int
-// my_sd_journal_get_cursor(void *f, sd_journal *j, char **cursor)
-// {
-//   int (*sd_journal_get_cursor)(sd_journal *, char **);
-//
-//   sd_journal_get_cursor = f;
-//   return sd_journal_get_cursor(j, cursor);
-// }
-//
-// int
-// my_sd_journal_test_cursor(void *f, sd_journal *j, const char *cursor)
-// {
-//   int (*sd_journal_test_cursor)(sd_journal *, const char *);
-//
-//   sd_journal_test_cursor = f;
-//   return sd_journal_test_cursor(j, cursor);
-// }
-//
-// int
-// my_sd_journal_get_realtime_usec(void *f, sd_journal *j, uint64_t *usec)
-// {
-//   int (*sd_journal_get_realtime_usec)(sd_journal *, uint64_t *);
-//
-//   sd_journal_get_realtime_usec = f;
-//   return sd_journal_get_realtime_usec(j, usec);
-// }
-//
-// int
-// my_sd_journal_get_monotonic_usec(void *f, sd_journal *j, uint64_t *usec, sd_id128_t *boot_id)
-// {
-//   int (*sd_journal_get_monotonic_usec)(sd_journal *, uint64_t *, sd_id128_t *);
-//
-//   sd_journal_get_monotonic_usec = f;
-//   return sd_journal_get_monotonic_usec(j, usec, boot_id);
-// }
-//
-// int
-// my_sd_journal_seek_head(void *f, sd_journal *j)
-// {
-//   int (*sd_journal_seek_head)(sd_journal *);
-//
-//   sd_journal_seek_head = f;
-//   return sd_journal_seek_head(j);
-// }
-//
-// int
-// my_sd_journal_seek_tail(void *f, sd_journal *j)
-// {
-//   int (*sd_journal_seek_tail)(sd_journal *);
-//
-//   sd_journal_seek_tail = f;
-//   return sd_journal_seek_tail(j);
-// }
-//
-//
-// int
-// my_sd_journal_seek_cursor(void *f, sd_journal *j, const char *cursor)
-// {
-//   int (*sd_journal_seek_cursor)(sd_journal *, const char *);
-//
-//   sd_journal_seek_cursor = f;
-//   return sd_journal_seek_cursor(j, cursor);
-// }
-//
-// int
-// my_sd_journal_seek_realtime_usec(void *f, sd_journal *j, uint64_t usec)
-// {
-//   int (*sd_journal_seek_realtime_usec)(sd_journal *, uint64_t);
-//
-//   sd_journal_seek_realtime_usec = f;
-//   return sd_journal_seek_realtime_usec(j, usec);
-// }
-//
-// int
-// my_sd_journal_wait(void *f, sd_journal *j, uint64_t timeout_usec)
-// {
-//   int (*sd_journal_wait)(sd_journal *, uint64_t);
-//
-//   sd_journal_wait = f;
-//   return sd_journal_wait(j, timeout_usec);
-// }
-//
-// void
-// my_sd_journal_restart_data(void *f, sd_journal *j)
-// {
-//   void (*sd_journal_restart_data)(sd_journal *);
-//
-//   sd_journal_restart_data = f;
-//   sd_journal_restart_data(j);
-// }
-//
-// int
-// my_sd_journal_enumerate_data(void *f, sd_journal *j, const void **data, size_t *length)
-// {
-//   int (*sd_journal_enumerate_data)(sd_journal *, const void **, size_t *);
-//
-//   sd_journal_enumerate_data = f;
-//   return sd_journal_enumerate_data(j, data, length);
-// }
-//
-// int
-// my_sd_journal_query_unique(void *f, sd_journal *j, const char *field)
-// {
-//   int(*sd_journal_query_unique)(sd_journal *, const char *);
-//
-//   sd_journal_query_unique = f;
-//   return sd_journal_query_unique(j, field);
-// }
-//
-// int
-// my_sd_journal_enumerate_unique(void *f, sd_journal *j, const void **data, size_t *length)
-// {
-//   int(*sd_journal_enumerate_unique)(sd_journal *, const void **, size_t *);
-//
-//   sd_journal_enumerate_unique = f;
-//   return sd_journal_enumerate_unique(j, data, length);
-// }
-//
-// void
-// my_sd_journal_restart_unique(void *f, sd_journal *j)
-// {
-//   void(*sd_journal_restart_unique)(sd_journal *);
-//
-//   sd_journal_restart_unique = f;
-//   sd_journal_restart_unique(j);
-// }
-//
-// int
-// my_sd_journal_get_catalog(void *f, sd_journal *j, char **ret)
-// {
-//   int(*sd_journal_get_catalog)(sd_journal *, char **);
-//
-//   sd_journal_get_catalog = f;
-//   return sd_journal_get_catalog(j, ret);
-// }
-//
-// int
-// my_sd_id128_get_boot(void *f, sd_id128_t *boot_id)
-// {
-//   int(*sd_id128_get_boot)(sd_id128_t *);
-//
-//   sd_id128_get_boot = f;
-//   return sd_id128_get_boot(boot_id);
-// }
-//
-// char *
-// my_sd_id128_to_string(void *f, sd_id128_t boot_id, char s[SD_ID128_STRING_MAX])
-// {
-//   char *(*sd_id128_to_string)(sd_id128_t, char *);
-//
-//   sd_id128_to_string = f;
-//   return sd_id128_to_string(boot_id, s);
-// }
-//
+// #cgo LDFLAGS: -lsystemd
 import "C"
 
 import (
@@ -423,12 +134,7 @@ func (m *Match) String() string {
 func NewJournal() (j *Journal, err error) {
 	j = &Journal{}
 
-	sd_journal_open, err := getFunction("sd_journal_open")
-	if err != nil {
-		return nil, err
-	}
-
-	r := C.my_sd_journal_open(sd_journal_open, &j.cjournal, C.SD_JOURNAL_LOCAL_ONLY)
+	r := C.sd_journal_open(&j.cjournal, C.SD_JOURNAL_LOCAL_ONLY)
 
 	if r < 0 {
 		return nil, fmt.Errorf("failed to open journal: %s", syscall.Errno(-r).Error())
@@ -442,15 +148,10 @@ func NewJournal() (j *Journal, err error) {
 func NewJournalFromDir(path string) (j *Journal, err error) {
 	j = &Journal{}
 
-	sd_journal_open_directory, err := getFunction("sd_journal_open_directory")
-	if err != nil {
-		return nil, err
-	}
-
 	p := C.CString(path)
 	defer C.free(unsafe.Pointer(p))
 
-	r := C.my_sd_journal_open_directory(sd_journal_open_directory, &j.cjournal, p, 0)
+	r := C.sd_journal_open_directory(&j.cjournal, p, 0)
 	if r < 0 {
 		return nil, fmt.Errorf("failed to open journal in directory %q: %s", path, syscall.Errno(-r).Error())
 	}
@@ -463,11 +164,6 @@ func NewJournalFromDir(path string) (j *Journal, err error) {
 func NewJournalFromFiles(paths ...string) (j *Journal, err error) {
 	j = &Journal{}
 
-	sd_journal_open_files, err := getFunction("sd_journal_open_files")
-	if err != nil {
-		return nil, err
-	}
-
 	// by making the slice 1 elem too long, we guarantee it'll be null-terminated
 	cPaths := make([]*C.char, len(paths)+1)
 	for idx, path := range paths {
@@ -476,7 +172,7 @@ func NewJournalFromFiles(paths ...string) (j *Journal, err error) {
 		defer C.free(unsafe.Pointer(p))
 	}
 
-	r := C.my_sd_journal_open_files(sd_journal_open_files, &j.cjournal, &cPaths[0], 0)
+	r := C.sd_journal_open_files(&j.cjournal, &cPaths[0], 0)
 	if r < 0 {
 		return nil, fmt.Errorf("failed to open journals in paths %q: %s", paths, syscall.Errno(-r).Error())
 	}
@@ -486,13 +182,8 @@ func NewJournalFromFiles(paths ...string) (j *Journal, err error) {
 
 // Close closes a journal opened with NewJournal.
 func (j *Journal) Close() error {
-	sd_journal_close, err := getFunction("sd_journal_close")
-	if err != nil {
-		return err
-	}
-
 	j.mu.Lock()
-	C.my_sd_journal_close(sd_journal_close, j.cjournal)
+	C.sd_journal_close(j.cjournal)
 	j.mu.Unlock()
 
 	return nil
@@ -500,16 +191,11 @@ func (j *Journal) Close() error {
 
 // AddMatch adds a match by which to filter the entries of the journal.
 func (j *Journal) AddMatch(match string) error {
-	sd_journal_add_match, err := getFunction("sd_journal_add_match")
-	if err != nil {
-		return err
-	}
-
 	m := C.CString(match)
 	defer C.free(unsafe.Pointer(m))
 
 	j.mu.Lock()
-	r := C.my_sd_journal_add_match(sd_journal_add_match, j.cjournal, unsafe.Pointer(m), C.size_t(len(match)))
+	r := C.sd_journal_add_match(j.cjournal, unsafe.Pointer(m), C.size_t(len(match)))
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -521,13 +207,8 @@ func (j *Journal) AddMatch(match string) error {
 
 // AddDisjunction inserts a logical OR in the match list.
 func (j *Journal) AddDisjunction() error {
-	sd_journal_add_disjunction, err := getFunction("sd_journal_add_disjunction")
-	if err != nil {
-		return err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_add_disjunction(sd_journal_add_disjunction, j.cjournal)
+	r := C.sd_journal_add_disjunction(j.cjournal)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -539,13 +220,8 @@ func (j *Journal) AddDisjunction() error {
 
 // AddConjunction inserts a logical AND in the match list.
 func (j *Journal) AddConjunction() error {
-	sd_journal_add_conjunction, err := getFunction("sd_journal_add_conjunction")
-	if err != nil {
-		return err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_add_conjunction(sd_journal_add_conjunction, j.cjournal)
+	r := C.sd_journal_add_conjunction(j.cjournal)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -557,25 +233,15 @@ func (j *Journal) AddConjunction() error {
 
 // FlushMatches flushes all matches, disjunctions and conjunctions.
 func (j *Journal) FlushMatches() {
-	sd_journal_flush_matches, err := getFunction("sd_journal_flush_matches")
-	if err != nil {
-		return
-	}
-
 	j.mu.Lock()
-	C.my_sd_journal_flush_matches(sd_journal_flush_matches, j.cjournal)
+	C.sd_journal_flush_matches(j.cjournal)
 	j.mu.Unlock()
 }
 
 // Next advances the read pointer into the journal by one entry.
 func (j *Journal) Next() (uint64, error) {
-	sd_journal_next, err := getFunction("sd_journal_next")
-	if err != nil {
-		return 0, err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_next(sd_journal_next, j.cjournal)
+	r := C.sd_journal_next(j.cjournal)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -588,13 +254,8 @@ func (j *Journal) Next() (uint64, error) {
 // NextSkip advances the read pointer by multiple entries at once,
 // as specified by the skip parameter.
 func (j *Journal) NextSkip(skip uint64) (uint64, error) {
-	sd_journal_next_skip, err := getFunction("sd_journal_next_skip")
-	if err != nil {
-		return 0, err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_next_skip(sd_journal_next_skip, j.cjournal, C.uint64_t(skip))
+	r := C.sd_journal_next_skip(j.cjournal, C.uint64_t(skip))
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -606,13 +267,8 @@ func (j *Journal) NextSkip(skip uint64) (uint64, error) {
 
 // Previous sets the read pointer into the journal back by one entry.
 func (j *Journal) Previous() (uint64, error) {
-	sd_journal_previous, err := getFunction("sd_journal_previous")
-	if err != nil {
-		return 0, err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_previous(sd_journal_previous, j.cjournal)
+	r := C.sd_journal_previous(j.cjournal)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -625,13 +281,8 @@ func (j *Journal) Previous() (uint64, error) {
 // PreviousSkip sets back the read pointer by multiple entries at once,
 // as specified by the skip parameter.
 func (j *Journal) PreviousSkip(skip uint64) (uint64, error) {
-	sd_journal_previous_skip, err := getFunction("sd_journal_previous_skip")
-	if err != nil {
-		return 0, err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_previous_skip(sd_journal_previous_skip, j.cjournal, C.uint64_t(skip))
+	r := C.sd_journal_previous_skip(j.cjournal, C.uint64_t(skip))
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -642,11 +293,6 @@ func (j *Journal) PreviousSkip(skip uint64) (uint64, error) {
 }
 
 func (j *Journal) getData(field string) (unsafe.Pointer, C.int, error) {
-	sd_journal_get_data, err := getFunction("sd_journal_get_data")
-	if err != nil {
-		return nil, 0, err
-	}
-
 	f := C.CString(field)
 	defer C.free(unsafe.Pointer(f))
 
@@ -654,7 +300,7 @@ func (j *Journal) getData(field string) (unsafe.Pointer, C.int, error) {
 	var l C.size_t
 
 	j.mu.Lock()
-	r := C.my_sd_journal_get_data(sd_journal_get_data, j.cjournal, f, &d, &l)
+	r := C.sd_journal_get_data(j.cjournal, f, &d, &l)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -719,31 +365,6 @@ func (j *Journal) GetDataValueBytes(field string) ([]byte, error) {
 // as well as address fields (cursor, realtime timestamp and monotonic timestamp).
 // To call GetEntry, you must first have called one of the Next/Previous functions.
 func (j *Journal) GetEntry() (*JournalEntry, error) {
-	sd_journal_get_realtime_usec, err := getFunction("sd_journal_get_realtime_usec")
-	if err != nil {
-		return nil, err
-	}
-
-	sd_journal_get_monotonic_usec, err := getFunction("sd_journal_get_monotonic_usec")
-	if err != nil {
-		return nil, err
-	}
-
-	sd_journal_get_cursor, err := getFunction("sd_journal_get_cursor")
-	if err != nil {
-		return nil, err
-	}
-
-	sd_journal_restart_data, err := getFunction("sd_journal_restart_data")
-	if err != nil {
-		return nil, err
-	}
-
-	sd_journal_enumerate_data, err := getFunction("sd_journal_enumerate_data")
-	if err != nil {
-		return nil, err
-	}
-
 	j.mu.Lock()
 	defer j.mu.Unlock()
 
@@ -751,7 +372,7 @@ func (j *Journal) GetEntry() (*JournalEntry, error) {
 	entry := &JournalEntry{Fields: make(map[string]string)}
 
 	var realtimeUsec C.uint64_t
-	r = C.my_sd_journal_get_realtime_usec(sd_journal_get_realtime_usec, j.cjournal, &realtimeUsec)
+	r = C.sd_journal_get_realtime_usec(j.cjournal, &realtimeUsec)
 	if r < 0 {
 		return nil, fmt.Errorf("failed to get realtime timestamp: %s", syscall.Errno(-r).Error())
 	}
@@ -761,7 +382,7 @@ func (j *Journal) GetEntry() (*JournalEntry, error) {
 	var monotonicUsec C.uint64_t
 	var boot_id C.sd_id128_t
 
-	r = C.my_sd_journal_get_monotonic_usec(sd_journal_get_monotonic_usec, j.cjournal, &monotonicUsec, &boot_id)
+	r = C.sd_journal_get_monotonic_usec(j.cjournal, &monotonicUsec, &boot_id)
 	if r < 0 {
 		return nil, fmt.Errorf("failed to get monotonic timestamp: %s", syscall.Errno(-r).Error())
 	}
@@ -771,7 +392,7 @@ func (j *Journal) GetEntry() (*JournalEntry, error) {
 	var c *C.char
 	// since the pointer is mutated by sd_journal_get_cursor, need to wait
 	// until after the call to free the memory
-	r = C.my_sd_journal_get_cursor(sd_journal_get_cursor, j.cjournal, &c)
+	r = C.sd_journal_get_cursor(j.cjournal, &c)
 	defer C.free(unsafe.Pointer(c))
 	if r < 0 {
 		return nil, fmt.Errorf("failed to get cursor: %s", syscall.Errno(-r).Error())
@@ -782,9 +403,9 @@ func (j *Journal) GetEntry() (*JournalEntry, error) {
 	// Implements the JOURNAL_FOREACH_DATA_RETVAL macro from journal-internal.h
 	var d unsafe.Pointer
 	var l C.size_t
-	C.my_sd_journal_restart_data(sd_journal_restart_data, j.cjournal)
+	C.sd_journal_restart_data(j.cjournal)
 	for {
-		r = C.my_sd_journal_enumerate_data(sd_journal_enumerate_data, j.cjournal, &d, &l)
+		r = C.sd_journal_enumerate_data(j.cjournal, &d, &l)
 		if r == 0 {
 			break
 		}
@@ -810,13 +431,8 @@ func (j *Journal) GetEntry() (*JournalEntry, error) {
 // turned off by setting it to 0, so that the library always returns the
 // complete data objects.
 func (j *Journal) SetDataThreshold(threshold uint64) error {
-	sd_journal_set_data_threshold, err := getFunction("sd_journal_set_data_threshold")
-	if err != nil {
-		return err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_set_data_threshold(sd_journal_set_data_threshold, j.cjournal, C.size_t(threshold))
+	r := C.sd_journal_set_data_threshold(j.cjournal, C.size_t(threshold))
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -833,13 +449,8 @@ func (j *Journal) SetDataThreshold(threshold uint64) error {
 func (j *Journal) GetRealtimeUsec() (uint64, error) {
 	var usec C.uint64_t
 
-	sd_journal_get_realtime_usec, err := getFunction("sd_journal_get_realtime_usec")
-	if err != nil {
-		return 0, err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_get_realtime_usec(sd_journal_get_realtime_usec, j.cjournal, &usec)
+	r := C.sd_journal_get_realtime_usec(j.cjournal, &usec)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -857,13 +468,8 @@ func (j *Journal) GetMonotonicUsec() (uint64, error) {
 	var usec C.uint64_t
 	var boot_id C.sd_id128_t
 
-	sd_journal_get_monotonic_usec, err := getFunction("sd_journal_get_monotonic_usec")
-	if err != nil {
-		return 0, err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_get_monotonic_usec(sd_journal_get_monotonic_usec, j.cjournal, &usec, &boot_id)
+	r := C.sd_journal_get_monotonic_usec(j.cjournal, &usec, &boot_id)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -877,17 +483,12 @@ func (j *Journal) GetMonotonicUsec() (uint64, error) {
 // last completed Next/Previous function call. To call GetCursor, you must
 // first have called one of the Next/Previous functions.
 func (j *Journal) GetCursor() (string, error) {
-	sd_journal_get_cursor, err := getFunction("sd_journal_get_cursor")
-	if err != nil {
-		return "", err
-	}
-
 	var d *C.char
 	// since the pointer is mutated by sd_journal_get_cursor, need to wait
 	// until after the call to free the memory
 
 	j.mu.Lock()
-	r := C.my_sd_journal_get_cursor(sd_journal_get_cursor, j.cjournal, &d)
+	r := C.sd_journal_get_cursor(j.cjournal, &d)
 	j.mu.Unlock()
 	defer C.free(unsafe.Pointer(d))
 
@@ -903,16 +504,11 @@ func (j *Journal) GetCursor() (string, error) {
 // TestCursor checks whether the current position in the journal matches the
 // specified cursor
 func (j *Journal) TestCursor(cursor string) error {
-	sd_journal_test_cursor, err := getFunction("sd_journal_test_cursor")
-	if err != nil {
-		return err
-	}
-
 	c := C.CString(cursor)
 	defer C.free(unsafe.Pointer(c))
 
 	j.mu.Lock()
-	r := C.my_sd_journal_test_cursor(sd_journal_test_cursor, j.cjournal, c)
+	r := C.sd_journal_test_cursor(j.cjournal, c)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -928,13 +524,8 @@ func (j *Journal) TestCursor(cursor string) error {
 // entry. This call must be followed by a call to Next before any call to
 // Get* will return data about the first element.
 func (j *Journal) SeekHead() error {
-	sd_journal_seek_head, err := getFunction("sd_journal_seek_head")
-	if err != nil {
-		return err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_seek_head(sd_journal_seek_head, j.cjournal)
+	r := C.sd_journal_seek_head(j.cjournal)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -948,13 +539,8 @@ func (j *Journal) SeekHead() error {
 // available entry. This call must be followed by a call to Previous before any
 // call to Get* will return data about the last element.
 func (j *Journal) SeekTail() error {
-	sd_journal_seek_tail, err := getFunction("sd_journal_seek_tail")
-	if err != nil {
-		return err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_seek_tail(sd_journal_seek_tail, j.cjournal)
+	r := C.sd_journal_seek_tail(j.cjournal)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -968,13 +554,8 @@ func (j *Journal) SeekTail() error {
 // timestamp, i.e. CLOCK_REALTIME. This call must be followed by a call to
 // Next/Previous before any call to Get* will return data about the sought entry.
 func (j *Journal) SeekRealtimeUsec(usec uint64) error {
-	sd_journal_seek_realtime_usec, err := getFunction("sd_journal_seek_realtime_usec")
-	if err != nil {
-		return err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_seek_realtime_usec(sd_journal_seek_realtime_usec, j.cjournal, C.uint64_t(usec))
+	r := C.sd_journal_seek_realtime_usec(j.cjournal, C.uint64_t(usec))
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -988,16 +569,11 @@ func (j *Journal) SeekRealtimeUsec(usec uint64) error {
 // followed by a call to Next/Previous before any call to Get* will return
 // data about the sought entry.
 func (j *Journal) SeekCursor(cursor string) error {
-	sd_journal_seek_cursor, err := getFunction("sd_journal_seek_cursor")
-	if err != nil {
-		return err
-	}
-
 	c := C.CString(cursor)
 	defer C.free(unsafe.Pointer(c))
 
 	j.mu.Lock()
-	r := C.my_sd_journal_seek_cursor(sd_journal_seek_cursor, j.cjournal, c)
+	r := C.sd_journal_seek_cursor(j.cjournal, c)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -1014,11 +590,6 @@ func (j *Journal) SeekCursor(cursor string) error {
 func (j *Journal) Wait(timeout time.Duration) int {
 	var to uint64
 
-	sd_journal_wait, err := getFunction("sd_journal_wait")
-	if err != nil {
-		return -1
-	}
-
 	if timeout == IndefiniteWait {
 		// sd_journal_wait(3) calls for a (uint64_t) -1 to be passed to signify
 		// indefinite wait, but using a -1 overflows our C.uint64_t, so we use an
@@ -1028,7 +599,7 @@ func (j *Journal) Wait(timeout time.Duration) int {
 		to = uint64(timeout / time.Microsecond)
 	}
 	j.mu.Lock()
-	r := C.my_sd_journal_wait(sd_journal_wait, j.cjournal, C.uint64_t(to))
+	r := C.sd_journal_wait(j.cjournal, C.uint64_t(to))
 	j.mu.Unlock()
 
 	return int(r)
@@ -1038,13 +609,8 @@ func (j *Journal) Wait(timeout time.Duration) int {
 func (j *Journal) GetUsage() (uint64, error) {
 	var out C.uint64_t
 
-	sd_journal_get_usage, err := getFunction("sd_journal_get_usage")
-	if err != nil {
-		return 0, err
-	}
-
 	j.mu.Lock()
-	r := C.my_sd_journal_get_usage(sd_journal_get_usage, j.cjournal, &out)
+	r := C.sd_journal_get_usage(j.cjournal, &out)
 	j.mu.Unlock()
 
 	if r < 0 {
@@ -1058,28 +624,13 @@ func (j *Journal) GetUsage() (uint64, error) {
 func (j *Journal) GetUniqueValues(field string) ([]string, error) {
 	var result []string
 
-	sd_journal_query_unique, err := getFunction("sd_journal_query_unique")
-	if err != nil {
-		return nil, err
-	}
-
-	sd_journal_enumerate_unique, err := getFunction("sd_journal_enumerate_unique")
-	if err != nil {
-		return nil, err
-	}
-
-	sd_journal_restart_unique, err := getFunction("sd_journal_restart_unique")
-	if err != nil {
-		return nil, err
-	}
-
 	j.mu.Lock()
 	defer j.mu.Unlock()
 
 	f := C.CString(field)
 	defer C.free(unsafe.Pointer(f))
 
-	r := C.my_sd_journal_query_unique(sd_journal_query_unique, j.cjournal, f)
+	r := C.sd_journal_query_unique(j.cjournal, f)
 
 	if r < 0 {
 		return nil, fmt.Errorf("failed to query journal: %s", syscall.Errno(-r).Error())
@@ -1088,9 +639,9 @@ func (j *Journal) GetUniqueValues(field string) ([]string, error) {
 	// Implements the SD_JOURNAL_FOREACH_UNIQUE macro from sd-journal.h
 	var d unsafe.Pointer
 	var l C.size_t
-	C.my_sd_journal_restart_unique(sd_journal_restart_unique, j.cjournal)
+	C.sd_journal_restart_unique(j.cjournal)
 	for {
-		r = C.my_sd_journal_enumerate_unique(sd_journal_enumerate_unique, j.cjournal, &d, &l)
+		r = C.sd_journal_enumerate_unique(j.cjournal, &d, &l)
 		if r == 0 {
 			break
 		}
@@ -1115,15 +666,10 @@ func (j *Journal) GetUniqueValues(field string) ([]string, error) {
 // by the last completed Next/Previous function call. To call GetCatalog, you
 // must first have called one of these functions.
 func (j *Journal) GetCatalog() (string, error) {
-	sd_journal_get_catalog, err := getFunction("sd_journal_get_catalog")
-	if err != nil {
-		return "", err
-	}
-
 	var c *C.char
 
 	j.mu.Lock()
-	r := C.my_sd_journal_get_catalog(sd_journal_get_catalog, j.cjournal, &c)
+	r := C.sd_journal_get_catalog(j.cjournal, &c)
 	j.mu.Unlock()
 	defer C.free(unsafe.Pointer(c))
 
@@ -1138,26 +684,16 @@ func (j *Journal) GetCatalog() (string, error) {
 
 // GetBootID get systemd boot id
 func (j *Journal) GetBootID() (string, error) {
-	sd_id128_get_boot, err := getFunction("sd_id128_get_boot")
-	if err != nil {
-		return "", err
-	}
-
 	var boot_id C.sd_id128_t
-	r := C.my_sd_id128_get_boot(sd_id128_get_boot, &boot_id)
+	r := C.sd_id128_get_boot(&boot_id)
 	if r < 0 {
 		return "", fmt.Errorf("failed to get boot id: %s", syscall.Errno(-r).Error())
-	}
-
-	sd_id128_to_string, err := getFunction("sd_id128_to_string")
-	if err != nil {
-		return "", err
 	}
 
 	id128StringMax := C.size_t(C.SD_ID128_STRING_MAX)
 	c := (*C.char)(C.malloc(id128StringMax))
 	defer C.free(unsafe.Pointer(c))
-	C.my_sd_id128_to_string(sd_id128_to_string, boot_id, c)
+	C.sd_id128_to_string(boot_id, c)
 
 	bootID := C.GoString(c)
 	if len(bootID) <= 0 {
