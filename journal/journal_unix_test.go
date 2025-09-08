@@ -23,7 +23,7 @@ import (
 	"syscall"
 	"testing"
 
-	"github.com/coreos/go-systemd/v22/journal"
+	"github.com/huntresslabs/go-systemd/journal"
 )
 
 func TestJournalStreamParsing(t *testing.T) {

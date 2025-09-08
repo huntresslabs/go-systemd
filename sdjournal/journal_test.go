@@ -26,7 +26,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/coreos/go-systemd/v22/journal"
+	"github.com/huntresslabs/go-systemd/journal"
 )
 
 func newJournal(t *testing.T) *Journal {

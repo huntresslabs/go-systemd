@@ -1,4 +1,4 @@
-module github.com/coreos/go-systemd/v22
+module github.com/huntresslabs/go-systemd
 
 go 1.23
 
