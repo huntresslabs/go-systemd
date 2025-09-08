@@ -36,7 +36,7 @@ func cleanupImport(t *testing.T, name string) {
 			err error
 			dur = 500 * time.Millisecond
 		)
-		for range 5 {
+		for i := 0; i < 5; i++ {
 			time.Sleep(dur)
 			out, err = exec.Command("machinectl", "remove", name).CombinedOutput()
 			if err == nil {

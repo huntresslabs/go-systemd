@@ -406,7 +406,7 @@ func TestJournalGetCatalog(t *testing.T) {
 
 	// Look for an entry with MESSAGE_ID (required for GetCatalog).
 	found := false
-	for range 100 {
+	for i := 0; i < 100; i++ {
 		n, err := j.Next()
 		if err != nil {
 			t.Fatalf("Error reading journal: %s", err)

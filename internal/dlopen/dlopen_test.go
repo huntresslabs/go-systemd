@@ -88,7 +88,7 @@ func TestDlopenThreadSafety(t *testing.T) {
 	wg := sync.WaitGroup{}
 	wg.Add(count)
 
-	for range count {
+	for i := 0; i < count; i++ {
 		go func() {
 			defer wg.Done()
 			lib, err := GetHandle(libs)
